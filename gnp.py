@@ -227,6 +227,8 @@ def _parse_stories_page(page, category):
                 if h2[cj][0][0][0][1][0][0][0][cl].attrib['class'] == 'esc-layout-article-cell':
                     SRC = h2[cj][0][0][0][1][0][0][0][cl][1][0][0][0][0][0]\
                         .xpath("string()").encode('utf-8')
+                    DATE = h2[cj][0][0][0][1][0][0][0][cl][1][1][0][0][0][0]\
+                        .xpath("string()").encode('utf-8')
                     HL = h2[cj][0][0][0][1][0][0][0][cl][0][0][0][0]\
                         .xpath("string()").encode('utf-8')
                     CONTEXT = h2[cj][0][0][0][1][0][0][0][cl][2]\
@@ -237,6 +239,7 @@ def _parse_stories_page(page, category):
                     pg["title"] = HL
                     pg["link"] = URLLINK
                     pg["source"] = SRC
+                    pg["date"] = DATE
                     pg["content_snippet"] = CONTEXT
                     pg["category"] = category
                     pg0.append(pg)
