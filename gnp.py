@@ -227,7 +227,7 @@ def _parse_stories_page(page, category):
                 if h2[cj][0][0][0][1][0][0][0][cl].attrib['class'] == 'esc-layout-article-cell':
                     SRC = h2[cj][0][0][0][1][0][0][0][cl][1][0][0][0][0][0]\
                         .xpath("string()").encode('utf-8')
-                    DATE = h2[cj][0][0][0][1][0][0][0][cl][1][1][0][0][0][0]\
+                    DATE = h2[cj][0][0][0][1][0][0][0][cl][1][0][0][0][1][1]\
                         .xpath("string()").encode('utf-8')
                     HL = h2[cj][0][0][0][1][0][0][0][cl][0][0][0][0]\
                         .xpath("string()").encode('utf-8')
