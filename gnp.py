@@ -209,11 +209,28 @@ EDITION_CHINESE_TAIWAN	= 'https://news.google.com/news?hl=en&tab=nn&edchanged=1&
 EDITION_JAPANESE_JAPAN	= 'https://news.google.com/news?hl=en&tab=nn&edchanged=1&authuser=0&ned=jp'
 EDITION_JAPANESE_HONG_KONG	= 'https://news.google.com/news?hl=en&tab=nn&edchanged=1&authuser=0&ned=hk'
 
+class Http:
+    def get(url):
+        return urllib.request.urlopen(url).read()
+
+__http_session = Http()
+
 
 def _parse_url(url):
-    r = urllib.request.urlopen(url).read()
-    page = etree.HTML(r)
+    resp = __http_session.get(url)
+    page = etree.HTML(resp.text)
     return page
+
+
+async def _parse_url_async(url):
+    resp = await __http_session.get(url)
+    page = etree.HTML(await resp.text)
+    return page
+
+
+def session(session):
+    global __http_session
+    __http_session = session
 
 
 def _parse_stories_page(page, category):
